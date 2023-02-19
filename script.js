@@ -8,13 +8,19 @@ const neck = document.querySelector('.neck')
 
 let language = 'ita'
 
-let selectedVoice
-
 const SELECTED_VOICE_KEY = 'pick-a-note_selected-voice'
+
+const utterance = new SpeechSynthesisUtterance()
+utterance.rate = 0.8
+
+const speak = (text) => {
+  utterance.text = text
+  synth.speak(utterance)
+}
 
 const setSelectedVoice = (voice) => {
   window.localStorage.setItem(SELECTED_VOICE_KEY, voice.voiceURI)
-  selectedVoice = voice
+  utterance.voice = voice
   language = voice.lang.includes('it-') ? 'ita' : 'eng'
 }
 
@@ -35,7 +41,10 @@ const populateVoiceList = () => {
     const option = document.createElement('option')
 
     option.textContent = `${voice.name} (${voice.lang})`
-    if (voice.voiceURI === savedSelectedVoice) {
+    if (
+      voice.voiceURI === savedSelectedVoice ||
+      (!savedSelectedVoice && voice.lang.includes('it-'))
+    ) {
       option.selected = true
       setSelectedVoice(voice)
     }
@@ -96,14 +105,6 @@ const english = {
 }
 
 const t = (key) => (language === 'ita' ? italian[key] : english[key])
-
-const utterance = new SpeechSynthesisUtterance()
-const speak = (text) => {
-  utterance.text = text
-  utterance.voice = selectedVoice
-  utterance.rate = 0.8
-  synth.speak(utterance)
-}
 
 let score = 0
 
