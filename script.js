@@ -18,10 +18,12 @@ const speak = (text) => {
   synth.speak(utterance)
 }
 
+const checkVoiceLang = (voice, lang) => voice.lang.substring(0, 2) === lang
+
 const setSelectedVoice = (voice) => {
   window.localStorage.setItem(SELECTED_VOICE_KEY, voice.voiceURI)
   utterance.voice = voice
-  language = voice.lang.includes('it-') ? 'ita' : 'eng'
+  language = checkVoiceLang(voice, 'it') ? 'ita' : 'eng'
 }
 
 const populateVoiceList = () => {
@@ -32,7 +34,7 @@ const populateVoiceList = () => {
   const savedSelectedVoice = window.localStorage.getItem(SELECTED_VOICE_KEY)
   const voices = speechSynthesis.getVoices()
   const allowedVoices = voices.filter(
-    ({ lang }) => lang.includes('it-') || lang.includes('en-'),
+    (voice) => checkVoiceLang(voice, 'it') || checkVoiceLang(voice, 'en'),
   )
 
   allowedVoices.sort((v1, v2) => v1.lang > v2.lang)
@@ -43,7 +45,7 @@ const populateVoiceList = () => {
     option.textContent = `${voice.name} (${voice.lang})`
     if (
       voice.voiceURI === savedSelectedVoice ||
-      (!savedSelectedVoice && voice.lang.includes('it-'))
+      (!savedSelectedVoice && checkVoiceLang(voice, 'it'))
     ) {
       option.selected = true
       setSelectedVoice(voice)
