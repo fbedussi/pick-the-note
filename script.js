@@ -58,9 +58,13 @@ const populateVoiceList = () => {
   })
 }
 
-setTimeout(populateVoiceList, 200)
-
 const synth = window.speechSynthesis
+
+synth.addEventListener('voiceschanged', () => {
+  populateVoiceList()
+})
+
+synth.onvoiceschanged = populateVoiceList
 
 const notes = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
 
