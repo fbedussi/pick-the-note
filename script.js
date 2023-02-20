@@ -56,7 +56,7 @@ const populateVoiceList = () => {
   })
 }
 
-populateVoiceList()
+setTimeout(populateVoiceList, 200)
 
 const synth = window.speechSynthesis
 
