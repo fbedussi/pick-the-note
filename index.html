@@ -14,10 +14,16 @@
 
 <body>
   <div class="display">
-    <select class="voice-select"></select>
+    <label class="audio-switch" for="audio-switch">
+      <input type="checkbox" id="audio-switch" name="audio-switch" role="switch">
+      <div class="icon">
+        <i class="gg-volume"></i>
+      </div>
+    </label>
+
+    <select class="voice-select" disabled></select>
 
     <div class="required"></div>
-    <div class="played"></div>
     <div class="points">0</div>
 
     <button class="next">

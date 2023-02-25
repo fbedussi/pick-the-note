@@ -1,21 +1,31 @@
+const audioSwitch = document.querySelector('#audio-switch')
 const display = document.querySelector('.display')
 const voiceSelect = document.querySelector('.voice-select')
 const required = document.querySelector('.required')
-const played = document.querySelector('.played')
 const points = document.querySelector('.points')
 const next = document.querySelector('.next')
 const neck = document.querySelector('.neck')
 
+const SELECTED_VOICE_KEY = 'pick-a-note_selected-voice'
+const AUDIO_ON_KEY = 'pick-a-note_audio-on'
+
 let language = 'ita'
 
-const SELECTED_VOICE_KEY = 'pick-a-note_selected-voice'
+let audioOn = window.localStorage.getItem(AUDIO_ON_KEY) === 'true'
+
+if (audioOn) {
+  audioSwitch.checked = true
+  voiceSelect.disabled = false
+}
 
 const utterance = new SpeechSynthesisUtterance()
 utterance.rate = 0.8
 
 const speak = (text) => {
-  utterance.text = text
-  synth.speak(utterance)
+  if (audioOn) {
+    utterance.text = text
+    synth.speak(utterance)
+  }
 }
 
 const checkVoiceLang = (voice, lang) => voice.lang.substring(0, 2) === lang
@@ -60,11 +70,12 @@ const populateVoiceList = () => {
 
 const synth = window.speechSynthesis
 
-synth.addEventListener('voiceschanged', () => {
-  populateVoiceList()
-})
-
-synth.onvoiceschanged = populateVoiceList
+const getVoicesInterval = setInterval(() => {
+  if (speechSynthesis.getVoices().length) {
+    clearInterval(getVoicesInterval)
+    populateVoiceList()
+  }
+}, 50)
 
 const notes = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
 
@@ -127,9 +138,11 @@ const handleClick = (e) => {
   const index = (startIndex + Number(bar)) % notes.length
   const note = notes[index]
 
-  played.innerText = t(note).replace(' diesis', '#')
-
   const right = noteToGuess === note
+
+  el.innerText = t(note).replace(' diesis', '#')
+  el.classList.add(right ? 'right' : 'wrong')
+
   speak(right ? t('right') : t('wrong'))
   score += right ? 1 : -1
   points.innerText = score
@@ -155,6 +168,14 @@ let noteToGuess
 const TIME_TO_RESPOND = 3000
 
 const pickNote = () => {
+  ;[document.querySelector('.right'), document.querySelector('.wrong')]
+    .filter(Boolean)
+    .forEach((el) => {
+      el.innerText = ''
+      el.classList.remove('right')
+      el.classList.remove('wrong')
+    })
+
   noteToGuess = notes[Math.round(Math.random() * (notes.length - 1))]
   required.innerText = t(noteToGuess).replace(' diesis', '#')
   speak(t(noteToGuess))
@@ -168,3 +189,9 @@ const pickNote = () => {
 pickNote()
 
 next.addEventListener('click', pickNote)
+
+audioSwitch.addEventListener('change', (e) => {
+  audioOn = e.target.checked
+  window.localStorage.setItem(AUDIO_ON_KEY, audioOn)
+  voiceSelect.disabled = !audioOn
+})

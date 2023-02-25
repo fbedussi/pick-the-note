@@ -26,6 +26,18 @@ body {
   margin-bottom: 0;
 }
 
+.audio-switch {
+  display: flex;
+  align-items: center;
+}
+
+.audio-switch .icon {
+  width: 2em;
+  height: 2em;
+  display: flex;
+  align-items: center;
+}
+
 .required,
 .played,
 .points {
@@ -36,6 +48,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-transform: uppercase;
 }
 
 .next {
@@ -44,7 +57,7 @@ body {
 
 .neck {
   display: grid;
-  grid-template-columns: 0.2fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(6, 1fr);
   flex: 1;
 }
@@ -54,6 +67,18 @@ body {
   height: 100%;
   border-right: solid 3px grey;
   position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 1rem;
+  color: white;
+}
+
+.right {
+  background-color: green;
+}
+
+.wrong {
+  background-color: red;
 }
 
 .button::before {
@@ -65,7 +90,7 @@ body {
   position: absolute;
   top: 50%;
   left: 0;
-  trasform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .string-2::before {
@@ -90,6 +115,14 @@ body {
 
 .bar-0 {
   background-color: grey;
+}
+
+.bar-0::before {
+  width: 3vw;
+  height: 3vw;
+  border-radius: 3vw;
+  right: 0;
+  left: auto;
 }
 
 .string-3.bar-3::after {
