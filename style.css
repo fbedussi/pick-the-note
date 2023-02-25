@@ -73,14 +73,6 @@ body {
   color: white;
 }
 
-.right {
-  background-color: green;
-}
-
-.wrong {
-  background-color: red;
-}
-
 .button::before {
   content: '';
   display: block;
@@ -117,6 +109,14 @@ body {
   background-color: grey;
 }
 
+.right {
+  background-color: green;
+}
+
+.wrong {
+  background-color: red;
+}
+
 .bar-0::before {
   width: 3vw;
   height: 3vw;
@@ -135,4 +135,5 @@ body {
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 50%);
+  z-index: -1;
 }

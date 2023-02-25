@@ -9,6 +9,8 @@ const neck = document.querySelector('.neck')
 const SELECTED_VOICE_KEY = 'pick-a-note_selected-voice'
 const AUDIO_ON_KEY = 'pick-a-note_audio-on'
 
+const synth = window.speechSynthesis
+
 let language = 'ita'
 
 let audioOn = window.localStorage.getItem(AUDIO_ON_KEY) === 'true'
@@ -67,8 +69,6 @@ const populateVoiceList = () => {
     voiceSelect.appendChild(option)
   })
 }
-
-const synth = window.speechSynthesis
 
 const getVoicesInterval = setInterval(() => {
   if (speechSynthesis.getVoices().length) {
@@ -130,6 +130,10 @@ let interval
 const PAUSE_AFTER_RESPONSE = 1000
 
 const handleClick = (e) => {
+  if (synth.speaking) {
+    return
+  }
+
   const el = e.target
   const bar = el.dataset.bar
   const string = el.dataset.string
@@ -179,6 +183,7 @@ const pickNote = () => {
   noteToGuess = notes[Math.round(Math.random() * (notes.length - 1))]
   required.innerText = t(noteToGuess).replace(' diesis', '#')
   speak(t(noteToGuess))
+
   window.clearInterval(interval)
   interval = setInterval(() => {
     score--
