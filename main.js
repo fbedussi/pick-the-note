@@ -4,6 +4,9 @@ import { speak } from './speak.js'
 import { GO_TO_NEXT_EVENT, RESPONDED_EVENT } from './events.js'
 import { t } from './i18n.js'
 
+const PAUSE_AFTER_RESPONSE = 1000
+const TIME_TO_RESPOND = 3000
+
 let interval
 
 const pickNote = () => {
