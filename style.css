@@ -36,6 +36,7 @@ score-display {
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
+  width: 4em;
 }
 
 .neck {
