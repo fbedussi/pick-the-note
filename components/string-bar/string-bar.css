@@ -1,0 +1,75 @@
+string-bar {
+  width: 100%;
+  height: 100%;
+  border-right: solid 3px grey;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 1rem;
+  color: white;
+}
+
+string-bar::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: max(1px, 0.1vh);
+  background-color: black;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+string-bar[string='2']::before {
+  height: max(2px, 0.2vh);
+}
+
+string-bar[string='3']::before {
+  height: max(3px, 0.4vh);
+}
+
+string-bar[string='4']::before {
+  height: max(4px, 0.6vh);
+}
+
+string-bar[string='5']::before {
+  height: max(5px, 0.8vh);
+}
+
+string-bar[string='6']::before {
+  height: max(6px, 1vh);
+}
+
+string-bar[bar='0'] {
+  background-color: grey;
+}
+
+string-bar[bar='0']::before {
+  width: 3vw;
+  height: 3vw;
+  border-radius: 3vw;
+  right: 0;
+  left: auto;
+}
+
+string-bar.right {
+  background-color: green;
+}
+
+string-bar.wrong {
+  background-color: red;
+}
+
+string-bar[bar='3'][string='3']::after {
+  content: '';
+  width: 5vh;
+  height: 5vh;
+  background-color: grey;
+  border-radius: 10vw;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  z-index: -1;
+}

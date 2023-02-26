@@ -12,30 +12,78 @@
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.classless.min.css" />
   <link href="https://css.gg/css" rel="stylesheet" />
   <link href="style.css" rel="stylesheet" />
+  <link href="components/audio-switch/audio-switch.css" rel="stylesheet" />
+  <link href="components/next-button/next-button.css" rel="stylesheet" />
+  <link href="components/string-bar/string-bar.css" rel="stylesheet" />
 </head>
 
 <body>
   <div class="display">
-    <label class="audio-switch" for="audio-switch">
+    <label is="audio-switch" for="audio-switch">
       <div class="icon">
         <i class="gg-volume"></i>
       </div>
       <input type="checkbox" id="audio-switch" name="audio-switch" role="switch">
     </label>
 
-    <select class="voice-select" disabled></select>
+    <select is="voice-select"></select>
 
-    <div class="required"></div>
-    <div class="points">0</div>
+    <required-note></required-note>
+    <score-display>0</score-display>
 
-    <button class="next">
+    <button is="next-button">
       <i class="gg-play-track-next-o"></i>
     </button>
   </div>
 
-  <div class="neck"></div>
+  <div class="neck">
+    <string-bar string="1" bar="0"></string-bar>
+    <string-bar string="1" bar="1"></string-bar>
+    <string-bar string="1" bar="2"></string-bar>
+    <string-bar string="1" bar="3"></string-bar>
+    <string-bar string="1" bar="4"></string-bar>
 
-  <script src="script.js"></script>
+    <string-bar string="2" bar="0"></string-bar>
+    <string-bar string="2" bar="1"></string-bar>
+    <string-bar string="2" bar="2"></string-bar>
+    <string-bar string="2" bar="3"></string-bar>
+    <string-bar string="2" bar="4"></string-bar>
+
+    <string-bar string="3" bar="0"></string-bar>
+    <string-bar string="3" bar="1"></string-bar>
+    <string-bar string="3" bar="2"></string-bar>
+    <string-bar string="3" bar="3"></string-bar>
+    <string-bar string="3" bar="4"></string-bar>
+
+    <string-bar string="4" bar="0"></string-bar>
+    <string-bar string="4" bar="1"></string-bar>
+    <string-bar string="4" bar="2"></string-bar>
+    <string-bar string="4" bar="3"></string-bar>
+    <string-bar string="4" bar="4"></string-bar>
+
+    <string-bar string="5" bar="0"></string-bar>
+    <string-bar string="5" bar="1"></string-bar>
+    <string-bar string="5" bar="2"></string-bar>
+    <string-bar string="5" bar="3"></string-bar>
+    <string-bar string="5" bar="4"></string-bar>
+
+    <string-bar string="6" bar="0"></string-bar>
+    <string-bar string="6" bar="1"></string-bar>
+    <string-bar string="6" bar="2"></string-bar>
+    <string-bar string="6" bar="3"></string-bar>
+    <string-bar string="6" bar="4"></string-bar>
+  </div>
+
+  <script src="consts.js" type="module"></script>
+  <script src="state.js" type="module"></script>
+  <script src="speak.js" type="module"></script>
+  <script src="components/voice-select.js" type="module"></script>
+  <script src="components/audio-switch/audio-switch.js" type="module"></script>
+  <script src="components/next-button/next-button.js" type="module"></script>
+  <script src="components/required-note.js" type="module"></script>
+  <script src="components/score-display.js" type="module"></script>
+  <script src="components/string-bar/string-bar.js" type="module"></script>
+  <script src="main.js" type="module"></script>
 </body>
 
 </html>

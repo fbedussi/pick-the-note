@@ -26,21 +26,8 @@ body {
   margin-bottom: 0;
 }
 
-.audio-switch {
-  display: flex;
-  align-items: center;
-}
-
-.audio-switch .icon {
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-}
-
-.required,
-.played,
-.points {
+required-note,
+score-display {
   border: solid 1px lightgray;
   aspect-ratio: 1;
   padding: 1rem;
@@ -51,89 +38,9 @@ body {
   text-transform: uppercase;
 }
 
-.next {
-  width: min-content;
-}
-
 .neck {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(6, 1fr);
   flex: 1;
-}
-
-.button {
-  width: 100%;
-  height: 100%;
-  border-right: solid 3px grey;
-  position: relative;
-  text-align: center;
-  text-transform: uppercase;
-  padding: 1rem;
-  color: white;
-}
-
-.button::before {
-  content: '';
-  display: block;
-  width: 100%;
-  height: max(1px, 0.1vh);
-  background-color: black;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-}
-
-.string-2::before {
-  height: max(2px, 0.2vh);
-}
-
-.string-3::before {
-  height: max(3px, 0.4vh);
-}
-
-.string-4::before {
-  height: max(4px, 0.6vh);
-}
-
-.string-5::before {
-  height: max(5px, 0.8vh);
-}
-
-.string-6::before {
-  height: max(6px, 1vh);
-}
-
-.bar-0 {
-  background-color: grey;
-}
-
-.right {
-  background-color: green;
-}
-
-.wrong {
-  background-color: red;
-}
-
-.bar-0::before {
-  width: 3vw;
-  height: 3vw;
-  border-radius: 3vw;
-  right: 0;
-  left: auto;
-}
-
-.string-3.bar-3::after {
-  content: '';
-  width: 5vh;
-  height: 5vh;
-  background-color: grey;
-  border-radius: 10vw;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 50%);
-  z-index: -1;
 }

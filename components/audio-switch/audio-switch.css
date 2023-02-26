@@ -1,0 +1,11 @@
+[is='audio-switch'] {
+  display: flex;
+  align-items: center;
+}
+
+[is='audio-switch'] .icon {
+  width: 2em;
+  height: 2em;
+  display: flex;
+  align-items: center;
+}
