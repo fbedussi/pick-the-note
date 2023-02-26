@@ -12,7 +12,10 @@ let interval
 const pickNote = () => {
   const noteToGuess = notes[Math.round(Math.random() * (notes.length - 1))]
 
-  setState({ noteToGuess })
+  setState({
+    noteToGuess,
+    enableResponse: true,
+  })
 
   speak(t(noteToGuess))
 

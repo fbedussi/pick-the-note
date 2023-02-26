@@ -5,6 +5,7 @@ let state = {
   audioOn: window.localStorage.getItem(AUDIO_ON_KEY) === 'true',
   score: 0,
   noteToGuess: '',
+  enableResponse: false,
 }
 
 const subscriptions = []

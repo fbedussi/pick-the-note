@@ -1,5 +1,5 @@
 import { notes } from '../../consts.js'
-import { speak, isSpeaking } from '../../speak.js'
+import { speak } from '../../speak.js'
 import { t } from '../../i18n.js'
 import { getState, setState, subscribeStateChange } from '../../state.js'
 import { RespondedEvent } from '../../events.js'
@@ -19,20 +19,25 @@ class StringBar extends HTMLElement {
 
     this.addEventListener('click', this.handleClick.bind(this))
 
+    this.disabled = true
+
     subscribeStateChange({
       noteToGuess: () => {
         this.innerText = ''
         this.classList.remove('right')
         this.classList.remove('wrong')
       },
+      enableResponse: (enableResponse) => {
+        this.disabled = !enableResponse
+      },
     })
   }
 
   handleClick = () => {
-    if (isSpeaking()) {
+    if (this.disabled) {
       return
     }
-
+    setState({ enableResponse: false })
     const bar = Number(this.getAttribute('bar'))
     const string = Number(this.getAttribute('string'))
 

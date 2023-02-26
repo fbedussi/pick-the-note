@@ -21,5 +21,3 @@ export const speak = (text) => {
     synth.speak(utterance)
   }
 }
-
-export const isSpeaking = () => synth.speaking
