@@ -1,7 +1,7 @@
-import { TIME_TO_RESPOND, PAUSE_AFTER_RESPONSE, notes } from './consts.js'
+import { notes } from './consts.js'
 import { setState } from './state.js'
 import { speak } from './speak.js'
-import { GO_TO_NEXT_EVENT, RESPONDED_EVENT } from './events.js'
+import { GO_TO_NEXT_EVENT, RESPONDED_EVENT, VOICE_INIT } from './events.js'
 import { t } from './i18n.js'
 
 const PAUSE_AFTER_RESPONSE = 1000
@@ -29,4 +29,4 @@ document.body.addEventListener(RESPONDED_EVENT, () => {
   setTimeout(pickNote, PAUSE_AFTER_RESPONSE)
 })
 
-pickNote()
+document.body.addEventListener(VOICE_INIT, pickNote)

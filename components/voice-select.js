@@ -1,4 +1,5 @@
 import { SELECTED_VOICE_KEY } from '../consts.js'
+import { VoiceInitEvent } from '../events.js'
 import { checkVoiceLang, setSelectedVoice } from '../speak.js'
 import { subscribeStateChange } from '../state.js'
 
@@ -10,6 +11,7 @@ class VoiceSelect extends HTMLSelectElement {
       if (speechSynthesis.getVoices().length) {
         clearInterval(getVoicesInterval)
         this.populateVoiceList()
+        document.body.dispatchEvent(new VoiceInitEvent())
       }
     }, 50)
 

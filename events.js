@@ -11,3 +11,10 @@ export class RespondedEvent extends CustomEvent {
     super(RESPONDED_EVENT)
   }
 }
+
+export const VOICE_INIT = 'voice-init'
+export class VoiceInitEvent extends CustomEvent {
+  constructor() {
+    super(VOICE_INIT)
+  }
+}
